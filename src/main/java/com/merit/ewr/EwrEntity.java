@@ -1,4 +1,4 @@
-package com.merit.entity;
+package com.merit.ewr;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,5 +16,5 @@ public class EwrEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long userId;                                    //--- automatically generated
     private String ewrName;
-    private String XXX;
+    private String ewrProjectLeader;
 }

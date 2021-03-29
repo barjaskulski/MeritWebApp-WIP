@@ -1,7 +1,5 @@
-package com.merit.controller;
+package com.merit.user;
 
-import com.merit.entity.UserEntity;
-import com.merit.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +34,4 @@ public class UserController {
     public void removeUserById(@PathVariable long userId) {
         userService.removeUserById(userId);
     }
-
 }

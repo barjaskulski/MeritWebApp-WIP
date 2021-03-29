@@ -1,6 +1,6 @@
-package com.merit.entity;
+package com.merit.user;
 
-import com.merit.ENUM.Position;
+import com.merit.enums.Position;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

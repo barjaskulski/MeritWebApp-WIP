@@ -1,4 +1,4 @@
-package com.merit.ENUM;
+package com.merit.enums;
 
 public enum SampleStatus {
     AWAITING_ARRIVAL,

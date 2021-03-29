@@ -1,7 +1,5 @@
-package com.merit.service;
+package com.merit.user;
 
-import com.merit.entity.UserEntity;
-import com.merit.repository.UserRepositories;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
