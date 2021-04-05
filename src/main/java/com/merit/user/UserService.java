@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Component
 public class UserService {
@@ -14,8 +15,8 @@ public class UserService {
         this.userRepositories = userRepositories;
     }
 
-    public List<UserEntity> getAllUsers() {
-        return userRepositories.findAll();
+    public List<UserDto> getAllUsers() {
+        return userRepositories.findAll().stream().map(UserDto::userDtoFromEntity).collect(Collectors.toList());
     }
 
     public UserEntity getUserById(long id){
@@ -30,4 +31,6 @@ public class UserService {
         UserEntity userEntityToDelete = userRepositories.findById(id).orElseThrow(NoSuchElementException::new);
         userRepositories.delete(userEntityToDelete);
     }
+
+
 }
