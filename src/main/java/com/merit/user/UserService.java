@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 @Component
 public class UserService {
 
-    private final UserRepositories userRepositories;
+    private final UserRepository userRepositories;
 
-    public UserService(UserRepositories userRepositories) {
+    public UserService(UserRepository userRepositories) {
         this.userRepositories = userRepositories;
     }
 

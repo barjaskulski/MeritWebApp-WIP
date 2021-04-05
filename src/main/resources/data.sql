@@ -1,0 +1,5 @@
+/* INSERT INTO EWR_ENTITY (EWR_NAME, EWR_PROJECT_LEADER) VALUES
+('K20200001', 'koral'),
+('K20200022', 'synek'),
+('K20200333', 'roksi'),
+('K20204444', 'marcin');*/

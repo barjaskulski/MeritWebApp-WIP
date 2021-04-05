@@ -1,17 +1,18 @@
 package com.merit.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.merit.enums.Position;
+import com.merit.ewr.EwrEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
 @Setter
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;                                    //--- automatically generated
     private String userLogin;                               //--- login
     private String userPassword;                            //--- password
@@ -38,4 +39,8 @@ public class UserEntity {
         this.userCreated = LocalDate.now().toString();
         this.userLastLogin = LocalDateTime.now().toString();
     }
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "usersInProject")
+    private Set<EwrEntity> ewrList = new HashSet<>();
 }

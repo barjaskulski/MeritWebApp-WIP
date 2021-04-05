@@ -1,9 +1,12 @@
 package com.merit.ewr;
 
+import com.merit.sample.SampleEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Component
 public class EwrService {
@@ -29,4 +32,5 @@ public class EwrService {
         EwrEntity ewrEntityToDelete = ewrRepository.findById(id).orElseThrow(NoSuchElementException::new);
         ewrRepository.delete(ewrEntityToDelete);
     }
+
 }
