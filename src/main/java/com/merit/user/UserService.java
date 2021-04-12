@@ -19,7 +19,7 @@ public class UserService {
         return userRepositories.findAll().stream().map(UserDto::userDtoFromEntity).collect(Collectors.toList());
     }
 
-    public UserEntity getUserById(long id){
+    public UserEntity getUserById(Long id){
         return userRepositories.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
@@ -27,7 +27,7 @@ public class UserService {
         return userRepositories.save(userEntity);
     }
 
-    public void removeUserById(long id) {
+    public void removeUserById(Long id) {
         UserEntity userEntityToDelete = userRepositories.findById(id).orElseThrow(NoSuchElementException::new);
         userRepositories.delete(userEntityToDelete);
     }

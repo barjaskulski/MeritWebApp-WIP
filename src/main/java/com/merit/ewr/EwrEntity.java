@@ -18,7 +18,7 @@ import java.util.Set;
 public class EwrEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ewrId;                                    //--- automatically generated
+    private Long ewrId;                                    //--- automatically generated
     private String ewrName;
     private String ewrProjectLeader;
 
@@ -28,7 +28,7 @@ public class EwrEntity {
     }
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
+    //@JsonIgnore
     @JoinTable(
             name="samples_in_project",
             joinColumns = @JoinColumn(name="ewr_id"),
@@ -37,7 +37,7 @@ public class EwrEntity {
     private Set<SampleEntity> samplesInProject = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
+    //@JsonIgnore
     @JoinTable(
             name="users_in_project",
             joinColumns = @JoinColumn(name="ewr_id"),
@@ -45,11 +45,19 @@ public class EwrEntity {
     )
     private Set<UserEntity> usersInProject = new HashSet<>();
 
-    public void addUserToEwr(UserEntity userEntity) {
-        usersInProject.add(userEntity);
-    }
 
     public void addSampleToEwr(SampleEntity sampleEntity) {
         samplesInProject.add(sampleEntity);
+    }
+
+    public void removeSampleFromEwr(SampleEntity sampleEntity) {
+        samplesInProject.remove(sampleEntity);
+    }
+
+    public void addUserToEwr(UserEntity userEntity) {
+        usersInProject.add(userEntity);
+    }
+    public void removeUserFromEwr(UserEntity userEntity) {
+        usersInProject.remove(userEntity);
     }
 }

@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class ChamberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long chamberId;                                    //--- automatically generated
+    private Long chamberId;                                    //--- automatically generated
     private String chamberName;
     private boolean isFree;
     private TestType currentTestType;

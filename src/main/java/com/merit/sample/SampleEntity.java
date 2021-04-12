@@ -1,6 +1,7 @@
 package com.merit.sample;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merit.ewr.EwrEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +18,8 @@ import java.util.Set;
 public class SampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long sampleId;                                    //--- automatically generated
+    private Long sampleId;                                    //--- automatically generated
     private String sampleNumber;
-    //private String sampleEWR;
-
 
     public SampleEntity(String sampleNumber) {
         this.sampleNumber = sampleNumber;

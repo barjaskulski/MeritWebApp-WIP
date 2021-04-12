@@ -6,6 +6,7 @@ import com.merit.user.UserEntity;
 import com.merit.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,24 +32,26 @@ public class EwrController {
     }
 
     @GetMapping("/ewr/{ewrId}")
-    public EwrEntity getEwrById(@PathVariable long ewrId) {
+    public EwrEntity getEwrById(@PathVariable Long ewrId) {
         return ewrService.getEwrById(ewrId);
     }
 
     @PostMapping("/ewr")
+    @ResponseStatus(HttpStatus.CREATED)
     public EwrEntity addEwr(@RequestBody EwrEntity ewrEntity) {
         return ewrService.addEwr(ewrEntity);
     }
 
     @DeleteMapping("/ewr/{ewrId}")
-    public void removeEwrById(@PathVariable long ewrId) {
+    public void removeEwrById(@PathVariable Long ewrId) {
         ewrService.removeEwrById(ewrId);
     }
 
-    @PutMapping("/ewr/{ewrId}/sample/{sampleId}")
+    //--------------------------------- samples actions in ewr ---------------------------------------------------------
+    @PutMapping("/ewr/{ewrId}/addSample/{sampleId}")
     public EwrEntity addSampleToEwr(
-            @PathVariable long ewrId,
-            @PathVariable long sampleId
+            @PathVariable Long ewrId,
+            @PathVariable Long sampleId
     ){
         EwrEntity ewrEntity = ewrService.getEwrById(ewrId);
         SampleEntity sampleEntity = sampleService.getSampleById(sampleId);
@@ -56,14 +59,38 @@ public class EwrController {
         return ewrService.addEwr(ewrEntity);
     }
 
-    @PutMapping("/ewr/{ewrId}/user/{userId}")
+    @PutMapping("/ewr/{ewrId}/removeSample/{sampleId}")
+    public EwrEntity removeSampleFromEwr(
+            @PathVariable Long ewrId,
+            @PathVariable Long sampleId
+    ){
+        EwrEntity ewrEntity = ewrService.getEwrById(ewrId);
+        SampleEntity sampleEntity = sampleService.getSampleById(sampleId);
+        ewrEntity.removeSampleFromEwr(sampleEntity);
+        return ewrService.addEwr(ewrEntity);
+    }
+
+    //----------------------------------- users actions in ewr ---------------------------------------------------------
+
+    @PutMapping("/ewr/{ewrId}/addUser/{userId}")
     public EwrEntity addUserToEwr(
-            @PathVariable long ewrId,
-            @PathVariable long userId
+            @PathVariable Long ewrId,
+            @PathVariable Long userId
     ){
         EwrEntity ewrEntity = ewrService.getEwrById(ewrId);
         UserEntity userEntity = userService.getUserById(userId);
         ewrEntity.addUserToEwr(userEntity);
+        return ewrService.addEwr(ewrEntity);
+    }
+
+    @PutMapping("/ewr/{ewrId}/removeUser/{userId}")
+    public EwrEntity removeUserFromEwr(
+            @PathVariable Long ewrId,
+            @PathVariable Long userId
+    ){
+        EwrEntity ewrEntity = ewrService.getEwrById(ewrId);
+        UserEntity userEntity = userService.getUserById(userId);
+        ewrEntity.removeUserFromEwr(userEntity);
         return ewrService.addEwr(ewrEntity);
     }
 }

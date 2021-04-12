@@ -20,7 +20,7 @@ public class EwrService {
         return ewrRepository.findAll();
     }
 
-    public EwrEntity getEwrById(long id){
+    public EwrEntity getEwrById(Long id){
         return ewrRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
@@ -28,9 +28,12 @@ public class EwrService {
         return ewrRepository.save(ewrEntity);
     }
 
-    public void removeEwrById(long id) {
+    public void removeEwrById(Long id) {
         EwrEntity ewrEntityToDelete = ewrRepository.findById(id).orElseThrow(NoSuchElementException::new);
         ewrRepository.delete(ewrEntityToDelete);
     }
 
+//    public SampleEntity getSamplesInEwrById(Long ewrId) {
+//        return ewrRepository
+//    }
 }

@@ -17,7 +17,7 @@ public class SampleService {
         return sampleRepository.findAll();
     }
 
-    public SampleEntity getSampleById(long sampleId) {
+    public SampleEntity getSampleById(Long sampleId) {
         return sampleRepository.findById(sampleId).orElseThrow(NoSuchElementException::new);
     }
 
@@ -25,12 +25,16 @@ public class SampleService {
         return sampleRepository.save(sampleEntity);
     }
 
-    public void removeSampleById(long sampleId) {
+    public void removeSampleById(Long sampleId) {
         SampleEntity sampleEntityToDelete = sampleRepository.findById(sampleId).orElseThrow(NoSuchElementException::new);
         sampleRepository.delete(sampleEntityToDelete);
     }
 
-    public void removeSampleByEwr(long ewrId) {
+    public void removeSampleByEwr(Long ewrId) {
 
+    }
+
+    public List<SampleEntity> findByEwrList(String ewrName) {
+        return sampleRepository.findByEwrList(ewrName);
     }
 }

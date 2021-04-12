@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 
 @Getter
 public class UserDto {
-    private long userId;
+    private Long userId;
     private String userLogin;
-    private String userLastLogin;
+    private LocalDateTime userLastLogin;
 
-    public UserDto(long userId, String userLogin, String userLastLogin) {
+    public UserDto(Long userId, String userLogin, LocalDateTime userLastLogin) {
         this.userId = userId;
         this.userLogin = userLogin;
         this.userLastLogin = userLastLogin;
